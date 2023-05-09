@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VÜCUT KİTLE İNDEXİ</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            height: 100vh;
+        }
+
+        .container {
+            background: rgba(169, 138, 138, 0.1);
+            background-color: rgb(249, 242, 242);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            border-radius: 10px;
+            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+            margin: 5px;
+        }
+
+        .input {
+            padding: 10px 10px;
+            font-size: 18px;
+            background-color: rgba(144, 113, 113, 0.7);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .btn {
+            background: linear-gradient(to left bottom, #746063, #f1bb88);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-size: 25px;
+            font-weight: 750;
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            box-shadow: 10px 10px 10px black;
+            transition: all 300ms ease;
+        }
+
+        h1 {
+            font-size: 25px;
+            text-align: center;
+        }
+
+        label {
+            margin: 5px 10px;
+        }
+
+        #cinsiyet {
+            margin-left: 10px;
+            margin-top: -15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>VÜCUT KİTLE İNDEXİ</h1>
+        <input class="input" id="boy" placeholder="Boy (m)" /> <br />
+        <input class="input" id="kilo" placeholder="Kilo (kg)" /> <br />
+        <!-- <input class="input" id="yas" placeholder="Yaş" /> <br />
+        <label>CİNSİYETİNİZ:          
+        <select id="cinsiyet">
+            <option value="erkek">ERKEK</option>
+            <option value="kadin">KADIN</option>
+          </select></label> -->
+        <button class="btn" id="btn">HESAPLA</button>
+        <h3>Vücut Kitle İndexiniz:</h3>
+        <input disabled class="input" id="index" />
+        <h3>Sağlık Durumunuz:</h3>
+        <input disabled class="input" id="durum" />
+    </div>
+
+    <script>
+        const btn = document.getElementById("btn");
+        const index = document.getElementById("index");
+        const durum = document.getElementById("durum");
+
+        btn.onclick = function () {
+
+            const boy = document.getElementById("boy").value;
+            const kilo = document.getElementById("kilo").value;
+            const sonuc = parseFloat((kilo / boy ** 2).toFixed(2));
+
+            index.value = sonuc;
+
+            if (sonuc < 18.5 && sonuc >= 0) {
+                durum.value = "Düşük Kilodasınız";
+            } else if (sonuc >= 18.5 && sonuc <= 24.9) {
+                durum.value = "İdeal Kilodasınız";
+            } else if (sonuc >= 25 && sonuc <= 29.9) {
+                durum.value = "Fazla Kilolusunuz";
+            } else if (sonuc >= 30 && sonuc <= 40) {
+                durum.value = "OBEZSİNİZ";
+            } else if (sonuc > 40) {
+                durum.value = "Fazla OBEZSİNİZ";
+            }
+
+            const yas = document.getElementById("yas").value;
+            const cinsiyet = document.getElementById("cinsiyet").value;
+
+            if (yas >= 50 && cinsiyet == "erkek") {
+                alert("Bol bol yürüyüş yapmalısınız...");
+            }
+            else if (yas >= 60 && cinsiyet == "kadin") {
+                alert("Sebze tüketimini artırmalısınız ...");
+            }
+        }
+
+    </script>
+</body>
+
+</html>
